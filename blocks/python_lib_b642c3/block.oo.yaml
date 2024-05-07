@@ -1,0 +1,40 @@
+type: task_block
+title: python_lib_b642c3
+icon: https://static.oomol.com/icons/python.png
+executor:
+  name: python_executor
+  entry: __init__.py
+inputs_def:
+  - handle: wav_file
+    serialize:
+      serializer: json
+      json_schema:
+        type: string
+        ui:widget: file
+  - handle: model
+    serialize:
+      serializer: json
+      json_schema:
+        type: string
+        enum:
+          - tiny
+          - base
+          - small
+          - medium
+    cache:
+      initial_value: base
+  - handle: output_folder
+    serialize:
+      serializer: json
+      json_schema:
+        type: string
+        ui:widget: dir
+  - handle: srt_file_name
+    serialize:
+      serializer: json
+      json_schema:
+        type: string
+outputs_def:
+  - handle: output_srt_path
+    serialize:
+      serializer: json

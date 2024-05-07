@@ -1,0 +1,34 @@
+type: task_block
+title: python_lib_fa5c5b
+icon: https://static.oomol.com/icons/python.png
+executor:
+  name: python_executor
+  entry: __init__.py
+inputs_def:
+  - handle: video_file
+    serialize:
+      serializer: json
+      json_schema:
+        type: string
+        ui:widget: file
+  - handle: srt_file
+    serialize:
+      serializer: json
+      json_schema:
+        type: string
+        ui:widget: file
+  - handle: output_folder
+    serialize:
+      serializer: json
+      json_schema:
+        type: string
+        ui:widget: dir
+  - handle: new_video_name
+    serialize:
+      serializer: json
+      json_schema:
+        type: string
+outputs_def:
+  - handle: out
+ui:
+  default_width: 253

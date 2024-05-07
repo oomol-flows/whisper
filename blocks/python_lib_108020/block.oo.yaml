@@ -1,0 +1,28 @@
+type: task_block
+title: python_lib_108020
+icon: https://static.oomol.com/icons/python.png
+executor:
+  name: python_executor
+  entry: __init__.py
+inputs_def:
+  - handle: video_file
+    serialize:
+      serializer: json
+      json_schema:
+        type: string
+        ui:widget: file
+  - handle: output_folder
+    serialize:
+      serializer: json
+      json_schema:
+        type: string
+        ui:widget: dir
+  - handle: wav_name
+    serialize:
+      serializer: json
+      json_schema:
+        type: string
+outputs_def:
+  - handle: output_wav_path
+    serialize:
+      serializer: json
