@@ -29,6 +29,8 @@ inputs_def:
       json_schema:
         type: string
 outputs_def:
-  - handle: out
+  - handle: new_video_path
+    serialize:
+      serializer: json
 ui:
   default_width: 253

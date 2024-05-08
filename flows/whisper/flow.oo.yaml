@@ -7,12 +7,15 @@ nodes:
           initial_value: base
       - handle: output_folder
       - handle: srt_file_name
+
+        from_node:
+          - node_id: 80200884-17d2-46e5-9820-693697a019c8
+            output_handle: output_wav_path
       - handle: video_file
         from_node:
           - node_id: 80200884-17d2-46e5-9820-693697a019c8
             output_handle: output_wav_path
       - handle: wav_file
-
         from_node:
           - node_id: 80200884-17d2-46e5-9820-693697a019c8
             output_handle: output_wav_path
@@ -22,9 +25,7 @@ nodes:
     node_id: 80200884-17d2-46e5-9820-693697a019c8
     inputs_from:
       - handle: video_file
-
       - handle: output_folder
-
       - handle: wav_name
 
     title: extract audio
@@ -38,10 +39,19 @@ nodes:
           - node_id: 42c35654-9d9a-4a26-9003-a93d67cb19d7
             output_handle: output_srt_path
       - handle: video_file
-
       - handle: output_folder
 
       - handle: new_video_name
 
     title: merge srt
     description: 合并字幕文件到视频中
+  - task: preview::video_preivew
+    node_id: fbf5c13a-83e3-4250-aa73-af2578804f30
+    inputs_from:
+      - handle: height
+        cache:
+          initial_value: 300
+      - handle: file_path
+        from_node:
+          - node_id: 5c5b36d1-7b6b-49bc-ba0e-7fc76320a062
+            output_handle: new_video_path
