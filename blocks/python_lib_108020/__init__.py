@@ -23,4 +23,5 @@ def main(inputs: dict, context):
     shell=True,
   )
 
+  context.output(video_file, "origin_video_path")
   context.output(wav_file_path, "output_wav_path", True)

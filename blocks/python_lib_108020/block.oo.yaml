@@ -11,18 +11,12 @@ inputs_def:
       json_schema:
         type: string
         ui:widget: file
-  - handle: output_folder
-    serialize:
-      serializer: json
-      json_schema:
-        type: string
-        ui:widget: dir
-  - handle: wav_name
-    serialize:
-      serializer: json
-      json_schema:
-        type: string
 outputs_def:
   - handle: output_wav_path
     serialize:
       serializer: json
+  - handle: origin_video_path
+    serialize:
+      serializer: json
+      json_schema:
+        type: string

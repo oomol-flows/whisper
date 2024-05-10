@@ -23,7 +23,7 @@ inputs_def:
           - medium
     cache:
       initial_value: base
-  - handle: output_folder
+  - handle: srt_folder
     serialize:
       serializer: json
       json_schema:

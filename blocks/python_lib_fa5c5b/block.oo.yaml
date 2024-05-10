@@ -28,6 +28,7 @@ inputs_def:
       serializer: json
       json_schema:
         type: string
+    optional: true
 outputs_def:
   - handle: new_video_path
     serialize:
