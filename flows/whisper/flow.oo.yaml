@@ -5,15 +5,15 @@ nodes:
       - handle: model
         cache:
           initial_value: base
-      - handle: srt_file_name
-        from_node:
-          - node_id: 80200884-17d2-46e5-9820-693697a019c8
-            output_handle: output_wav_path
       - handle: wav_file
         from_node:
           - node_id: 80200884-17d2-46e5-9820-693697a019c8
             output_handle: output_wav_path
       - handle: srt_folder
+      - handle: srt_file_name
+        from_node:
+          - node_id: 80200884-17d2-46e5-9820-693697a019c8
+            output_handle: origin_video_path
 
     title: whisper
     description: 识别音频中的文本为字幕文件, 并保存到指定文件夹中

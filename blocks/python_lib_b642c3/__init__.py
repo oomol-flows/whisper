@@ -1,5 +1,6 @@
 import subprocess
 import os
+import hashlib
 
 def main(inputs: dict, context):
   model = inputs.get("model")
@@ -9,8 +10,7 @@ def main(inputs: dict, context):
 
   if srt_file_name.endswith(".srt"):
     srt_file_name = srt_file_name.rstrip(".srt")
-  srt_file_path = os.path.join(srt_folder, srt_file_name)
-
+  srt_file_path = os.path.join(srt_folder, hashlib.md5(srt_file_name.encode()).hexdigest())
 
   with subprocess.Popen(
     ". ~/.x-cmd.root/X; x whisper dictate --srt -o {srt_file_path} -l auto -m {model} {wav_file}".format(
