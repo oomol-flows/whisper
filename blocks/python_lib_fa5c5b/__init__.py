@@ -36,4 +36,5 @@ def main(inputs: dict, context):
     context.done()
     return
 
-  context.output(new_video_path, "out", True)
+  context.output(new_video_path, "new_video_path", True)
+ 

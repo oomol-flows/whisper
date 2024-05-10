@@ -4,13 +4,12 @@ import os
 def main(inputs: dict, context):
   model = inputs.get("model")
   wav_file = inputs.get("wav_file")
-  output_folder = inputs.get("output_folder")
+  srt_folder = inputs.get("srt_folder")
   srt_file_name = inputs.get("srt_file_name")
+
   if srt_file_name.endswith(".srt"):
     srt_file_name = srt_file_name.rstrip(".srt")
-  srt_file_path = os.path.join(output_folder, srt_file_name)
-
-
+  srt_file_path = os.path.join(srt_folder, srt_file_name)
 
 
   with subprocess.Popen(

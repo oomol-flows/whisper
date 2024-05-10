@@ -1,18 +1,12 @@
 import subprocess
 import os
+import tempfile
+import uuid
 
 def main(inputs: dict, context):
   video_file = inputs.get("video_file")
-  output_folder = inputs.get("output_folder")
-  wav_name = inputs.get("wav_name")
 
-  wav_file_name = None
-  if not "".endswith(".wav"):
-    wav_file_name = wav_name + ".wav"
-  else:
-    wav_file_name = wav_name
-
-  wav_file_path = os.path.join(output_folder, wav_file_name)
+  wav_file_path = os.path.join(tempfile.gettempdir(), uuid.uuid4().hex + ".wav")
 
   split_audio = subprocess.run(
     ". ~/.x-cmd.root/X; x ffmpeg -i {video_file} -acodec pcm_s16le -ar 16000 -ac 2 {tmp_audio_path}".format(
