@@ -23,6 +23,7 @@ def main(inputs: dict, context):
     stderr=subprocess.PIPE, 
     text=True,
     shell=True,
+    bufsize=1
   ) as process:
     for line in iter(process.stdout.readline, ''):
       print(line)
@@ -37,4 +38,3 @@ def main(inputs: dict, context):
     return
 
   context.output(new_video_path, "new_video_path", True)
- 

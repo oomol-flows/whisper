@@ -28,7 +28,7 @@ def main(inputs: dict, context):
     for line in iter(process.stderr.readline, ''):
       print(line)
 
-    process.wait()  
+    process.wait()
 
   if process.returncode != 0:
     context.done()
