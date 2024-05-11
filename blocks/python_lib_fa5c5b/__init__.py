@@ -16,7 +16,7 @@ def main(inputs: dict, context):
   new_video_path = os.path.join(output_folder, new_name)
 
   with subprocess.Popen(
-    ". ~/.x-cmd.root/X; x whisper merge {srt_file} {video_file} {new_video_path}".format(
+    ". ~/.x-cmd.root/X; x ffmpeg -i {video_file} -vf subtitles={srt_file} {new_video_path}".format(
       srt_file=srt_file, video_file=video_file, new_video_path=new_video_path
     ),
     stdout=subprocess.PIPE, 

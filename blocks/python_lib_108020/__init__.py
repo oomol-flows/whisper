@@ -15,6 +15,7 @@ def main(inputs: dict, context):
     ". ~/.x-cmd.root/X; x ffmpeg -i {video_file} -acodec pcm_s16le -ar 16000 -ac 2 {tmp_audio_path}".format(
       video_file=video_file, tmp_audio_path=wav_file_path
     ),
+    stdout=subprocess.PIPE,
     stderr=subprocess.PIPE, 
     text=True,
     shell=True,

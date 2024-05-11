@@ -10,6 +10,7 @@ nodes:
           - node_id: 80200884-17d2-46e5-9820-693697a019c8
             output_handle: output_wav_path
       - handle: srt_folder
+
       - handle: srt_file_name
         from_node:
           - node_id: 80200884-17d2-46e5-9820-693697a019c8
@@ -47,7 +48,7 @@ nodes:
     inputs_from:
       - handle: height
         cache:
-          initial_value: 220
+          initial_value: 260
       - handle: file_path
         from_node:
           - node_id: 5c5b36d1-7b6b-49bc-ba0e-7fc76320a062
