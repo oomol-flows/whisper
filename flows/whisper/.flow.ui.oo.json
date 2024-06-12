@@ -1,1 +1,165 @@
-{"nodes":[{"id":"42c35654-9d9a-4a26-9003-a93d67cb19d7","contentWidth":206.2265625,"selected":false,"dragging":false,"position":{"x":338,"y":104},"positionAbsolute":{"x":338,"y":104},"width":220,"height":176},{"id":"80200884-17d2-46e5-9820-693697a019c8","contentWidth":200,"selected":false,"dragging":false,"position":{"x":39,"y":299},"positionAbsolute":{"x":39,"y":299},"width":214,"height":111},{"id":"5c5b36d1-7b6b-49bc-ba0e-7fc76320a062","contentWidth":237.29296875,"selected":false,"dragging":false,"position":{"x":611,"y":299},"positionAbsolute":{"x":611,"y":299},"width":251,"height":176},{"id":"8a80a882-9013-41cb-b4d6-b4f0f8b6eaaa","contentWidth":430.078125,"selected":false,"dragging":false,"position":{"x":910,"y":156},"positionAbsolute":{"x":910,"y":156},"width":444,"height":299}],"edges":[{"id":"10e02026-7e49-4b9a-970c-a186e6fe9841","connection":{"from":{"type":"from_node","source":{"node_id":"80200884-17d2-46e5-9820-693697a019c8","output_handle":"output_wav_path"}},"to":{"type":"to_node","target":{"node_id":"42c35654-9d9a-4a26-9003-a93d67cb19d7","input_handle":"wav_file"}}}},{"id":"b87ffc01-f0ad-4c50-8e0a-1ae19c46708f","connection":{"from":{"type":"from_node","source":{"node_id":"80200884-17d2-46e5-9820-693697a019c8","output_handle":"origin_video_path"}},"to":{"type":"to_node","target":{"node_id":"42c35654-9d9a-4a26-9003-a93d67cb19d7","input_handle":"srt_file_name"}}}},{"id":"eb52c115-0193-4648-abf6-61c445477a15","selected":false,"connection":{"from":{"type":"from_node","source":{"node_id":"80200884-17d2-46e5-9820-693697a019c8","output_handle":"origin_video_path"}},"to":{"type":"to_node","target":{"node_id":"5c5b36d1-7b6b-49bc-ba0e-7fc76320a062","input_handle":"video_file"}}}},{"id":"e020267e-49bb-4a17-8ca1-86e6fe984190","connection":{"from":{"type":"from_node","source":{"node_id":"42c35654-9d9a-4a26-9003-a93d67cb19d7","output_handle":"output_srt_path"}},"to":{"type":"to_node","target":{"node_id":"5c5b36d1-7b6b-49bc-ba0e-7fc76320a062","input_handle":"srt_file"}}}},{"id":"d6b4f0f8-b6ea-4a7f-a8e9-4de594f9dedd","connection":{"from":{"type":"from_node","source":{"node_id":"5c5b36d1-7b6b-49bc-ba0e-7fc76320a062","output_handle":"new_video_path"}},"to":{"type":"to_node","target":{"node_id":"8a80a882-9013-41cb-b4d6-b4f0f8b6eaaa","input_handle":"file_path"}}}}]}
+{
+  "nodes": [
+    {
+      "id": "8a80a882-9013-41cb-b4d6-b4f0f8b6eaaa",
+      "contentWidth": 559.4105224609375,
+      "selected": false,
+      "dragging": false,
+      "position": {
+        "x": 975,
+        "y": 156
+      },
+      "positionAbsolute": {
+        "x": 975,
+        "y": 156
+      },
+      "width": 573,
+      "height": 412
+    },
+    {
+      "id": "20d6d038-10e1-494d-83cc-24146e842293",
+      "contentWidth": 209.5703125,
+      "selected": false,
+      "dragging": false,
+      "position": {
+        "x": 39,
+        "y": 273
+      },
+      "positionAbsolute": {
+        "x": 39,
+        "y": 273
+      },
+      "width": 224,
+      "height": 110
+    },
+    {
+      "id": "833191ca-e82d-4dcd-a7b5-0d34e9cb760c",
+      "contentWidth": 200,
+      "selected": false,
+      "dragging": false,
+      "position": {
+        "x": 325,
+        "y": 208
+      },
+      "positionAbsolute": {
+        "x": 325,
+        "y": 208
+      },
+      "width": 214,
+      "height": 176
+    },
+    {
+      "id": "cd545c43-2afd-4bd7-85bb-497cb92c8082",
+      "contentWidth": 267,
+      "selected": false,
+      "dragging": false,
+      "position": {
+        "x": 624,
+        "y": 182
+      },
+      "positionAbsolute": {
+        "x": 624,
+        "y": 182
+      },
+      "width": 281,
+      "height": 176
+    }
+  ],
+  "edges": [
+    {
+      "id": "f3cfb183-8a49-433d-a842-7b6725166d58",
+      "connection": {
+        "from": {
+          "type": "from_node",
+          "source": {
+            "node_id": "cd545c43-2afd-4bd7-85bb-497cb92c8082",
+            "output_handle": "new_video_path"
+          }
+        },
+        "to": {
+          "type": "to_node",
+          "target": {
+            "node_id": "8a80a882-9013-41cb-b4d6-b4f0f8b6eaaa",
+            "input_handle": "file_path"
+          }
+        }
+      }
+    },
+    {
+      "id": "4eaee206-1d76-4a3b-9f99-74ed8a889b4a",
+      "connection": {
+        "from": {
+          "type": "from_node",
+          "source": {
+            "node_id": "20d6d038-10e1-494d-83cc-24146e842293",
+            "output_handle": "output_wav_path"
+          }
+        },
+        "to": {
+          "type": "to_node",
+          "target": {
+            "node_id": "833191ca-e82d-4dcd-a7b5-0d34e9cb760c",
+            "input_handle": "wav_file"
+          }
+        }
+      }
+    },
+    {
+      "id": "aee2061d-76fa-4b1f-9974-ed8a889b4af3",
+      "connection": {
+        "from": {
+          "type": "from_node",
+          "source": {
+            "node_id": "20d6d038-10e1-494d-83cc-24146e842293",
+            "output_handle": "origin_video_path"
+          }
+        },
+        "to": {
+          "type": "to_node",
+          "target": {
+            "node_id": "833191ca-e82d-4dcd-a7b5-0d34e9cb760c",
+            "input_handle": "srt_file_name"
+          }
+        }
+      }
+    },
+    {
+      "id": "e2061d76-fa3b-4f99-b4ed-8a889b4af3cf",
+      "connection": {
+        "from": {
+          "type": "from_node",
+          "source": {
+            "node_id": "833191ca-e82d-4dcd-a7b5-0d34e9cb760c",
+            "output_handle": "output_srt_path"
+          }
+        },
+        "to": {
+          "type": "to_node",
+          "target": {
+            "node_id": "cd545c43-2afd-4bd7-85bb-497cb92c8082",
+            "input_handle": "srt_file"
+          }
+        }
+      }
+    },
+    {
+      "id": "96fca02e-0d07-4732-a079-aa36d0005dc7",
+      "connection": {
+        "from": {
+          "type": "from_node",
+          "source": {
+            "node_id": "20d6d038-10e1-494d-83cc-24146e842293",
+            "output_handle": "origin_video_path"
+          }
+        },
+        "to": {
+          "type": "to_node",
+          "target": {
+            "node_id": "cd545c43-2afd-4bd7-85bb-497cb92c8082",
+            "input_handle": "video_file"
+          }
+        }
+      }
+    }
+  ]
+}

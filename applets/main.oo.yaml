@@ -1,0 +1,5 @@
+keepAlive: true
+executor:
+  name: python_executor
+  entry: ../codes/main/__init__.py
+lifecycle: session

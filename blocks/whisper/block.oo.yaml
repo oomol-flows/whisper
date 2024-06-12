@@ -1,16 +1,15 @@
 type: task_block
-title: python_lib_b642c3
-icon: https://static.oomol.com/icons/python.png
-executor:
-  name: python_executor
-  entry: __init__.py
+title: Whisper
+options:
+  mode: request
+  applet: ../../applets/main.oo.yaml
+  function: whisper
 inputs_def:
   - handle: wav_file
     serialize:
       serializer: json
       json_schema:
         type: string
-        ui:widget: file
   - handle: model
     serialize:
       serializer: json
@@ -21,8 +20,6 @@ inputs_def:
           - base
           - small
           - medium
-    cache:
-      initial_value: base
   - handle: srt_folder
     serialize:
       serializer: json

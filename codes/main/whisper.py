@@ -2,7 +2,7 @@ import subprocess
 import os
 import hashlib
 
-def main(inputs: dict, context):
+def whisper(inputs: dict, context):
   model = inputs.get("model")
   wav_file = inputs.get("wav_file")
   srt_folder = inputs.get("srt_folder")
@@ -31,7 +31,6 @@ def main(inputs: dict, context):
     process.wait()
 
   if process.returncode != 0:
-    context.done()
     return
 
   output_file_path = None
@@ -40,5 +39,7 @@ def main(inputs: dict, context):
   else:
     output_file_path = srt_file_path
 
-  context.output(output_file_path, "output_srt_path", True)
+  return {
+    "output_srt_path": output_file_path,
+  }
  

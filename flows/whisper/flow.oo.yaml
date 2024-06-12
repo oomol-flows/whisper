@@ -1,59 +1,41 @@
 nodes:
-  - task: ../../blocks/python_lib_b642c3/block.oo.yaml
-    node_id: 42c35654-9d9a-4a26-9003-a93d67cb19d7
-    inputs_from:
-      - handle: model
-        cache:
-          initial_value: base
-      - handle: wav_file
-        from_node:
-          - node_id: 80200884-17d2-46e5-9820-693697a019c8
-            output_handle: output_wav_path
-      - handle: srt_folder
-
-
-      - handle: srt_file_name
-        from_node:
-          - node_id: 80200884-17d2-46e5-9820-693697a019c8
-            output_handle: origin_video_path
-
-    title: whisper
-    description: 识别音频中的文本为字幕文件, 并保存到指定文件夹中
-
-  - task: ../../blocks/python_lib_108020/block.oo.yaml
-    node_id: 80200884-17d2-46e5-9820-693697a019c8
-    inputs_from:
-      - handle: video_file
-
-    title: extract audio
-    description: 从视频中抽离音频文件
-
-  - task: ../../blocks/python_lib_fa5c5b/block.oo.yaml
-    node_id: 5c5b36d1-7b6b-49bc-ba0e-7fc76320a062
-    inputs_from:
-      - handle: srt_file
-        from_node:
-          - node_id: 42c35654-9d9a-4a26-9003-a93d67cb19d7
-            output_handle: output_srt_path
-      - handle: video_file
-        from_node:
-          - node_id: 80200884-17d2-46e5-9820-693697a019c8
-            output_handle: origin_video_path
-      - handle: output_folder
-
-      - handle: new_video_name
-
-
-    title: merge srt
-    description: 合并字幕文件到视频中
 
   - task: preview::video_preview
     node_id: 8a80a882-9013-41cb-b4d6-b4f0f8b6eaaa
     inputs_from:
       - handle: height
-        cache:
-          initial_value: 350
+        value: 1080
       - handle: file_path
         from_node:
-          - node_id: 5c5b36d1-7b6b-49bc-ba0e-7fc76320a062
+          - node_id: cd545c43-2afd-4bd7-85bb-497cb92c8082
             output_handle: new_video_path
+  - task: ../../blocks/extract_auto/block.oo.yaml
+    node_id: 20d6d038-10e1-494d-83cc-24146e842293
+    inputs_from:
+      []
+  - task: ../../blocks/whisper/block.oo.yaml
+    node_id: 833191ca-e82d-4dcd-a7b5-0d34e9cb760c
+    inputs_from:
+      - handle: wav_file
+        from_node:
+          - node_id: 20d6d038-10e1-494d-83cc-24146e842293
+            output_handle: output_wav_path
+      - handle: srt_file_name
+        from_node:
+          - node_id: 20d6d038-10e1-494d-83cc-24146e842293
+            output_handle: origin_video_path
+      - handle: srt_folder
+        value: /oomol-storage/srt
+  - task: ../../blocks/merge_srt/block.oo.yaml
+    node_id: cd545c43-2afd-4bd7-85bb-497cb92c8082
+    inputs_from:
+      - handle: srt_file
+        from_node:
+          - node_id: 833191ca-e82d-4dcd-a7b5-0d34e9cb760c
+            output_handle: output_srt_path
+      - handle: video_file
+        from_node:
+          - node_id: 20d6d038-10e1-494d-83cc-24146e842293
+            output_handle: origin_video_path
+      - handle: new_video_name
+        value: new_open

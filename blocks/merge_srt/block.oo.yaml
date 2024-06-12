@@ -1,0 +1,37 @@
+type: task_block
+title: Merge SRT
+options:
+  mode: request
+  applet: ../../applets/main.oo.yaml
+  function: merge_srt
+inputs_def:
+  - handle: video_file
+    serialize:
+      serializer: json
+      json_schema:
+        type: string
+        ui:widget: file
+  - handle: srt_file
+    serialize:
+      serializer: json
+      json_schema:
+        type: string
+  - handle: output_folder
+    serialize:
+      serializer: json
+      json_schema:
+        type: string
+        ui:widget: dir
+  - handle: new_video_name
+    serialize:
+      serializer: json
+      json_schema:
+        type: string
+outputs_def:
+  - handle: new_video_path
+    serialize:
+      serializer: json
+      json_schema:
+        type: string
+ui:
+  default_width: 267

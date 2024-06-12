@@ -3,7 +3,7 @@ import os
 import tempfile
 import uuid
 
-def main(inputs: dict, context):
+def extract_auto(inputs: dict, context):
   video_file = inputs.get("video_file")
 
   tmp_dir = os.path.join(tempfile.gettempdir(), uuid.uuid4().hex)
@@ -20,6 +20,7 @@ def main(inputs: dict, context):
     text=True,
     shell=True,
   )
-
-  context.output(video_file, "origin_video_path")
-  context.output(wav_file_path, "output_wav_path", True)
+  return {
+    "origin_video_path": video_file,
+    "output_wav_path": wav_file_path
+  }
