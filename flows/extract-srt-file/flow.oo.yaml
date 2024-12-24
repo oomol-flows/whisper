@@ -29,3 +29,37 @@ nodes:
         from_node:
           - node_id: whisper#3
             output_handle: segments
+  - task: oomol-transform::encode-string
+    title: "Encode string #1"
+    node_id: encode-string#1
+    inputs_from:
+      - handle: string
+        from_node:
+          - node_id: whisper_segments_to_srt#1
+            output_handle: srt
+      - handle: encoding
+        value: utf8
+  - task: oomol-file::write-file
+    title: "Write file #1"
+    node_id: write-file#1
+    inputs_from:
+      - handle: binary
+        from_node:
+          - node_id: encode-string#1
+            output_handle: binary
+      - handle: file_name
+        value: file.srt
+      - handle: output_folder
+        value: /oomol-driver/oomol-storage
+      - handle: mkdir
+        value: false
+      - handle: when_file_exists
+        value: error
+  - task: oomol-preview::markdown-preview
+    title: "Markdown preview #1"
+    node_id: markdown-preview#1
+    inputs_from:
+      - handle: text
+        from_node:
+          - node_id: whisper_segments_to_srt#1
+            output_handle: srt
