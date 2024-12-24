@@ -1,30 +1,6 @@
 inputs_def:
-  - handle: audio_file
-    description: Input
-    json_schema:
-      type: string
-      minLength: 1
-      ui:widget: file
-    nullable: false
-  - handle: model
-    json_schema:
-      contentMediaType: oomol/var
-    name: WhiperModel
-    nullable: false
-  - handle: prompt
-    json_schema:
-      type: string
-      ui:widget: text
-    value: ""
-outputs_def:
-  - handle: language
-    json_schema:
-      type: string
-  - handle: text
-    json_schema:
-      type: string
   - handle: segments
-    description: Output
+    description: Input
     json_schema:
       type: array
       items:
@@ -73,6 +49,11 @@ outputs_def:
                   type: string
                 probability:
                   type: number
+outputs_def:
+  - handle: srt
+    description: Output
+    json_schema:
+      type: string
 ui:
   default_width: 450
 executor:
@@ -80,4 +61,4 @@ executor:
   options:
     spawn: false
     entry: main.py
-title: Whisper
+title: Whisper segments to SRT

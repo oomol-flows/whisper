@@ -21,3 +21,11 @@ nodes:
         from_node:
           - node_id: whisper-model#7
             output_handle: model
+  - task: self::whisper_segments_to_srt
+    title: "Whisper segments to SRT #1"
+    node_id: whisper_segments_to_srt#1
+    inputs_from:
+      - handle: segments
+        from_node:
+          - node_id: whisper#3
+            output_handle: segments
