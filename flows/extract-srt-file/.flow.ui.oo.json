@@ -1,20 +1,20 @@
 {
   "nodes": {
-    "whisper#1": {
-      "contentWidth": 516.5703125,
+    "whisper-model#7": {
+      "contentWidth": 450,
       "rfNode": {
         "position": {
-          "x": 37,
-          "y": 5
+          "x": 73.99781758676602,
+          "y": 36.86225236108718
         }
-      },
-      "sections": {
-        "inputs": {
-          "collapsed": {
-            "prompt": {
-              "[]": false
-            }
-          }
+      }
+    },
+    "whisper#3": {
+      "contentWidth": 450,
+      "rfNode": {
+        "position": {
+          "x": 594.2737042157031,
+          "y": 36.86225236108718
         }
       }
     }

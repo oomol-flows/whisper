@@ -5,26 +5,17 @@ inputs_def:
       type: string
       minLength: 1
       ui:widget: file
-  - handle: mode
+    nullable: false
+  - handle: model
     json_schema:
-      enum:
-        - tiny
-        - base
-        - small
-        - medium
-        - large
-      ui:options:
-        labels:
-          - Tiny
-          - Base
-          - Small
-          - Medium
-          - Large
-    value: small
+      contentMediaType: oomol/var
+    name: WhiperModel
+    nullable: false
   - handle: prompt
     json_schema:
       type: string
       ui:widget: text
+    value: ""
 outputs_def:
   - handle: language
     json_schema:
@@ -39,23 +30,39 @@ outputs_def:
       items:
         type: object
         properties:
-          begin:
+          avg_logprob:
+            type: number
+          compression_ratio:
+            type: number
+          id:
             type: integer
+          no_speech_prob:
+            type: number
+          seek:
+            type: number
+          start:
+            type: number
           end:
-            type: integer
-          text:
-            type: string
+            type: number
+          temperature:
+            type: number
+          tokens:
+            type: array
+            items:
+              type: number
           words:
             type: array
-            item:
+            items:
               type: object
               properties:
+                start:
+                  type: number
+                end:
+                  type: number
                 word:
                   type: string
-                begin:
-                  type: integer
-                end:
-                  type: integer
+                probability:
+                  type: number
 ui:
   default_width: 450
 executor:

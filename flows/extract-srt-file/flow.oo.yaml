@@ -1,11 +1,23 @@
 nodes:
-  - task: self::whisper
-    title: "Whisper #1"
-    node_id: whisper#1
+  - task: self::whisper-model
+    title: "Whisper Model #1"
+    node_id: whisper-model#7
     inputs_from:
-      - handle: mode
+      - handle: model
         value: small
+      - handle: device
+        value: cuda
+      - handle: dir_path
+        value:
+  - task: self::whisper
+    title: "Whisper #2"
+    node_id: whisper#3
+    inputs_from:
       - handle: audio_file
-        value: /oomol-driver/oomol-storage/Audio/10_然后我们要配置密钥。这里面板不允许我们直接把密钥复制粘贴到这里，而必须先添加到密钥库中。我们点这.wav
+        value: /oomol-driver/oomol-storage/Audio/6_那让我们开始吧。首先，我们来_oomol_官网把它下载下来。oomol_的官方网址我会贴在视频简.wav
       - handle: prompt
-        value: 使用简体中文，涉及词汇 OyMyGPT、oomol、ChatGPT、Claude
+        value: ""
+      - handle: model
+        from_node:
+          - node_id: whisper-model#7
+            output_handle: model
