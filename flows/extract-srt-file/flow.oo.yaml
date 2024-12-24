@@ -10,17 +10,19 @@ nodes:
       - handle: dir_path
         value:
   - task: self::whisper
-    title: "Whisper #2"
+    title: "Whisper #1"
     node_id: whisper#3
     inputs_from:
       - handle: audio_file
-        value: /oomol-driver/oomol-storage/Audio/6_那让我们开始吧。首先，我们来_oomol_官网把它下载下来。oomol_的官方网址我会贴在视频简.wav
+        value: ""
       - handle: prompt
         value: ""
       - handle: model
         from_node:
           - node_id: whisper-model#7
             output_handle: model
+      - handle: word_timestamps
+        value: false
   - task: self::whisper_segments_to_srt
     title: "Whisper segments to SRT #1"
     node_id: whisper_segments_to_srt#1
@@ -48,9 +50,7 @@ nodes:
           - node_id: encode-string#1
             output_handle: binary
       - handle: file_name
-        value: file.srt
       - handle: output_folder
-        value: /oomol-driver/oomol-storage
       - handle: mkdir
         value: false
       - handle: when_file_exists

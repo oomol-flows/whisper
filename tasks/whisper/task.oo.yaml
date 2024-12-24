@@ -11,6 +11,10 @@ inputs_def:
       contentMediaType: oomol/var
     name: WhiperModel
     nullable: false
+  - handle: word_timestamps
+    json_schema:
+      type: boolean
+    value: false
   - handle: prompt
     json_schema:
       type: string
