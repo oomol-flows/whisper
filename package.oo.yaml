@@ -3,5 +3,13 @@ scripts:
   # Script executed when the container is first loaded
   # eg: bootstrap: pip install pandas
   bootstrap: |
-    pnpm install && pip install -r requirements.txt
+    set -e
+    sudo apt-get update
+    sudo apt-get install -y ffmpeg
+    pip install --upgrade pip
+    pip install -r requirements.txt
 icon: ./icon.png
+dependencies:
+  oomol-transform: 0.0.1
+  oomol-file: 0.0.1
+  oomol-preview: 0.0.1

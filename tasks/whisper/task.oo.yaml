@@ -1,0 +1,83 @@
+inputs_def:
+  - handle: audio_file
+    description: Input
+    json_schema:
+      type: string
+      minLength: 1
+      ui:widget: file
+    nullable: false
+  - handle: model
+    json_schema:
+      contentMediaType: oomol/var
+    name: WhiperModel
+    nullable: false
+  - handle: prompt
+    json_schema:
+      type: string
+      ui:widget: text
+    value: ""
+outputs_def:
+  - handle: language
+    json_schema:
+      type: string
+  - handle: text
+    json_schema:
+      type: string
+  - handle: segments
+    description: Output
+    json_schema:
+      type: array
+      items:
+        type: object
+        required:
+          - avg_logprob
+          - compression_ratio
+          - id
+          - no_speech_prob
+          - seek
+          - start
+          - end
+          - temperature
+          - tokens
+        properties:
+          avg_logprob:
+            type: number
+          compression_ratio:
+            type: number
+          id:
+            type: integer
+          no_speech_prob:
+            type: number
+          seek:
+            type: number
+          start:
+            type: number
+          end:
+            type: number
+          temperature:
+            type: number
+          tokens:
+            type: array
+            items:
+              type: number
+          words:
+            type: array
+            items:
+              type: object
+              properties:
+                start:
+                  type: number
+                end:
+                  type: number
+                word:
+                  type: string
+                probability:
+                  type: number
+ui:
+  default_width: 450
+executor:
+  name: python
+  options:
+    spawn: false
+    entry: main.py
+title: Whisper
