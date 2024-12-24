@@ -14,7 +14,7 @@ nodes:
     node_id: whisper#3
     inputs_from:
       - handle: audio_file
-        value: /oomol-driver/oomol-storage/Audio/6_那让我们开始吧。首先，我们来_oomol_官网把它下载下来。oomol_的官方网址我会贴在视频简.wav
+        value: ""
       - handle: prompt
         value: ""
       - handle: model
@@ -48,9 +48,7 @@ nodes:
           - node_id: encode-string#1
             output_handle: binary
       - handle: file_name
-        value: file.srt
       - handle: output_folder
-        value: /oomol-driver/oomol-storage
       - handle: mkdir
         value: false
       - handle: when_file_exists
