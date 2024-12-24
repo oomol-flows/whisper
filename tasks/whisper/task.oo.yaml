@@ -1,0 +1,66 @@
+inputs_def:
+  - handle: audio_file
+    description: Input
+    json_schema:
+      type: string
+      minLength: 1
+      ui:widget: file
+  - handle: mode
+    json_schema:
+      enum:
+        - tiny
+        - base
+        - small
+        - medium
+        - large
+      ui:options:
+        labels:
+          - Tiny
+          - Base
+          - Small
+          - Medium
+          - Large
+    value: small
+  - handle: prompt
+    json_schema:
+      type: string
+      ui:widget: text
+outputs_def:
+  - handle: language
+    json_schema:
+      type: string
+  - handle: text
+    json_schema:
+      type: string
+  - handle: segments
+    description: Output
+    json_schema:
+      type: array
+      items:
+        type: object
+        properties:
+          begin:
+            type: integer
+          end:
+            type: integer
+          text:
+            type: string
+          words:
+            type: array
+            item:
+              type: object
+              properties:
+                word:
+                  type: string
+                begin:
+                  type: integer
+                end:
+                  type: integer
+ui:
+  default_width: 450
+executor:
+  name: python
+  options:
+    spawn: false
+    entry: main.py
+title: Whisper

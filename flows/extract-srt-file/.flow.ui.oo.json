@@ -1,0 +1,22 @@
+{
+  "nodes": {
+    "whisper#1": {
+      "contentWidth": 516.5703125,
+      "rfNode": {
+        "position": {
+          "x": 37,
+          "y": 5
+        }
+      },
+      "sections": {
+        "inputs": {
+          "collapsed": {
+            "prompt": {
+              "[]": false
+            }
+          }
+        }
+      }
+    }
+  }
+}
