@@ -46,4 +46,4 @@ executor:
   options:
     spawn: false
     entry: main.py
-title: Whisper Model
+title: Whisper model

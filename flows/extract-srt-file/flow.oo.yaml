@@ -1,6 +1,6 @@
 nodes:
   - task: self::whisper-model
-    title: "Whisper Model #1"
+    title: "Whisper model #1"
     node_id: whisper-model#7
     inputs_from:
       - handle: model
@@ -9,6 +9,7 @@ nodes:
         value: cuda
       - handle: dir_path
         value:
+    description: Load model of Whisper
   - task: self::whisper
     title: "Whisper #1"
     node_id: whisper#3
@@ -23,6 +24,7 @@ nodes:
             output_handle: model
       - handle: word_timestamps
         value: false
+    description: Invoke Whisper to extract segments from audio file
   - task: self::whisper_segments_to_srt
     title: "Whisper segments to SRT #1"
     node_id: whisper_segments_to_srt#1
@@ -31,6 +33,7 @@ nodes:
         from_node:
           - node_id: whisper#3
             output_handle: segments
+    description: Transform segments to SRT text
   - task: oomol-transform::encode-string
     title: "Encode string #1"
     node_id: encode-string#1
@@ -41,6 +44,7 @@ nodes:
             output_handle: srt
       - handle: encoding
         value: utf8
+    description: Encode SRT text to binary data
   - task: oomol-file::write-file
     title: "Write file #1"
     node_id: write-file#1
@@ -55,6 +59,7 @@ nodes:
         value: false
       - handle: when_file_exists
         value: error
+    description: Save SRT as file
   - task: oomol-preview::markdown-preview
     title: "Markdown preview #1"
     node_id: markdown-preview#1
