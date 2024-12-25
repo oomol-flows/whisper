@@ -1,0 +1,31 @@
+nodes:
+  - task:
+      ui:
+        default_width: 450
+      inputs_def:
+        - handle: model_dir
+          json_schema:
+            type: string
+            minLength: 1
+            ui:widget: dir
+          value: ""
+        - handle: audio_file
+          json_schema:
+            type: string
+            minLength: 1
+            ui:widget: file
+          value: ""
+      outputs_def:
+        []
+      executor:
+        name: python
+        options:
+          entry: scriptlets/+python#1.py
+    title: "Python #1"
+    icon: ":logos:python:"
+    node_id: +python#1
+    inputs_from:
+      - handle: model_dir
+        value: /oomol-driver/oomol-storage/WhisperModel
+      - handle: audio_file
+        value: /oomol-driver/oomol-storage/Audio/8_好了，初始化完成了。接下来，我们需要将信息填到这些字段中。看起来很多呀，没关系，并不需要把所有的.wav
