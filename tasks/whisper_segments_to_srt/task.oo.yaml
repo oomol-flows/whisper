@@ -6,6 +6,7 @@ inputs_def:
       items:
         type: object
         required:
+          - text
           - avg_logprob
           - compression_ratio
           - id
@@ -16,6 +17,8 @@ inputs_def:
           - temperature
           - tokens
         properties:
+          text:
+            type: string
           avg_logprob:
             type: number
           compression_ratio:
