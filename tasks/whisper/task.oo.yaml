@@ -9,7 +9,7 @@ inputs_def:
   - handle: model
     json_schema:
       contentMediaType: oomol/var
-    name: WhiperModel
+    kind: model
     nullable: false
   - handle: word_timestamps
     json_schema:
@@ -34,6 +34,7 @@ outputs_def:
       items:
         type: object
         required:
+          - text
           - avg_logprob
           - compression_ratio
           - id
@@ -44,6 +45,8 @@ outputs_def:
           - temperature
           - tokens
         properties:
+          text:
+            type: string
           avg_logprob:
             type: number
           compression_ratio:

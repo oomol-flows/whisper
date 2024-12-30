@@ -35,10 +35,10 @@ inputs_def:
     nullable: true
 outputs_def:
   - handle: model
-    name: WhiperModel
     description: Output
     json_schema:
       contentMediaType: oomol/var
+    kind: model
 ui:
   default_width: 450
 executor:
