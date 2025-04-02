@@ -15,7 +15,6 @@ nodes:
     node_id: whisper#3
     inputs_from:
       - handle: audio_file
-        value: ""
       - handle: prompt
         value: ""
       - handle: model
