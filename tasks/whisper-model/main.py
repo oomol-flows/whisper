@@ -1,23 +1,15 @@
-import torch
-
 from typing import Literal
-from whisper import load_model
-from oocana import Context
+from shared.model import load_whisper_model, ModelKind
 
-ModelKind = Literal["tiny", "base", "small", "medium", "large"]
 
-def main(params: dict, context: Context):
-  name: ModelKind = params["model"]
+def main(params: dict):
+  model: ModelKind = params["model"]
   device: Literal["cpu", "cuda"] = params["device"]
   dir_path: str = params["dir_path"]
 
-  if device == "cuda" and not torch.cuda.is_available():
-    device = "cpu"
-    print("CUDA is not available. Switching to CPU")
-
-  model = load_model(
-    name=name,
+  whisper_model = load_whisper_model(
+    model_kind=model,
     device=device,
-    download_root=dir_path,
+    dir_path=dir_path,
   )
-  return { "model": model }
+  return { "model": whisper_model }
