@@ -1,5 +1,6 @@
 import io
 
+
 def main(params: dict):
   segments: list = params["segments"]
   srt_buffer = io.StringIO()
