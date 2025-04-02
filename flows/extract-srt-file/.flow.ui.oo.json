@@ -20,9 +20,7 @@
       "sections": {
         "inputs": {
           "collapsed": {
-            "prompt": {
-              "[]": true
-            }
+            "prompt": {}
           }
         }
       }
