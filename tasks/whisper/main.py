@@ -1,15 +1,34 @@
-from typing import cast
+from typing import cast, Any, Literal, TypedDict
 from whisper import Whisper
 from shared.model import load_whisper_model
 
 
-def main(params: dict):
+class LLMMessages(TypedDict):
+  role: Literal["system", "user", "assistant"]
+  content: str
+
+class Inputs(TypedDict):
+  audio_file: str
+  model: Any
+  word_timestamps: bool
+  prompt: list[LLMMessages]
+
+class Outputs(TypedDict):
+  language: str
+  text: str
+  segments: list[dict]
+
+def main(params: Inputs) -> Outputs:
   model: Whisper | None = params["model"]
-  audio_file: str = params["audio_file"]
-  word_timestamps: bool = params["word_timestamps"]
-  prompt: str | None = cast(str, params["prompt"])
-  if prompt.strip() == "":
-    prompt = None
+  audio_file = params["audio_file"]
+  word_timestamps = params["word_timestamps"]
+  prompts = params["prompt"]
+  prompt: str = ""
+
+  if len(prompts) > 0:
+    prompt = prompts[0]["content"]
+    if len(prompts) > 1:
+      print("Warning: Only the first prompt is used.")
 
   if model is None:
     model = load_whisper_model()
@@ -20,7 +39,7 @@ def main(params: dict):
     word_timestamps=word_timestamps,
   )
   return {
-    "language": result["language"],
-    "text": result["text"],
-    "segments": result["segments"],
+    "language": cast(str, result["language"]),
+    "text": cast(str, result["text"]),
+    "segments": cast(list[dict], result["segments"]),
   }

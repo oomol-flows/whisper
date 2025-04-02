@@ -18,9 +18,14 @@ inputs_def:
     value: false
   - handle: prompt
     json_schema:
-      type: string
-      ui:widget: text
-    value: ""
+      anyOf:
+        - type: string
+        - type: array
+      ui:options:
+        title: Prompt
+      ui:widget: llm::messages
+    value:
+      []
 outputs_def:
   - handle: language
     json_schema:
