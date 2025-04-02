@@ -5,17 +5,26 @@ from typing import Literal
 from whisper import load_model, Whisper
 
 
-ModelKind = Literal["tiny", "base", "small", "medium", "large"]
+ModelKind = Literal[
+  "tiny",
+  "base",
+  "small",
+  "medium",
+  "large",
+]
 
 def load_whisper_model(
-  model_kind: ModelKind,
-  device: Literal["cpu", "cuda"],
-  dir_path: str | None,
+  model_kind: ModelKind = "medium",
+  device: Literal["cpu", "cuda"] | None = None,
+  dir_path: str | None = None,
 ) -> Whisper:
 
-  if device == "cuda" and not torch.cuda.is_available():
+  if torch.cuda.is_available():
+    device = device or "cuda"
+  else:
+    if device == "cuda":
+      print("CUDA is not available. Switching to CPU")
     device = "cpu"
-    print("CUDA is not available. Switching to CPU")
 
   if dir_path is None:
     dir_path = os.path.join("/tmp", "whipser-model")
