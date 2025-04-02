@@ -2,6 +2,7 @@ from typing import cast
 from whisper import Whisper
 from shared.model import load_whisper_model
 
+
 def main(params: dict):
   model: Whisper | None = params["model"]
   audio_file: str = params["audio_file"]
