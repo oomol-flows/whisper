@@ -4,15 +4,15 @@ scripts:
   # eg: bootstrap: pip install pandas
   bootstrap: |
     set -e
-    sudo apt-get update
-    sudo apt-get install -y ffmpeg
     pip install --upgrade pip
     pip install -r requirements.txt
+    wget https://raw.githubusercontent.com/oomol/sshexec/refs/heads/main/scripts/installer.sh --output-document /tmp/installer.sh
+    bash +x /tmp/installer.sh
 icon: ./icon.png
 dependencies:
-  oomol-transform: 0.0.1
-  oomol-file: 0.0.7
-  oomol-preview: 0.0.2
+  oomol-transform: 0.0.3
+  oomol-file: 0.0.10
+  oomol-preview: 0.0.3
 name: whisper
 description: Use OpenAI Whisper to recognize human voices from audio files.
 displayName: Whisper

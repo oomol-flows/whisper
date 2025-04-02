@@ -10,11 +10,11 @@ def main(params: dict):
     prompt = None
 
   result = model.transcribe(
-    audio_file, 
+    audio_file,
     initial_prompt=prompt,
     word_timestamps=word_timestamps,
   )
-  return { 
+  return {
     "language": result["language"],
     "text": result["text"],
     "segments": result["segments"],
