@@ -10,7 +10,8 @@ inputs_def:
     json_schema:
       contentMediaType: oomol/var
     kind: model
-    nullable: false
+    value:
+    nullable: true
   - handle: word_timestamps
     json_schema:
       type: boolean

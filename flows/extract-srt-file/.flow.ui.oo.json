@@ -16,6 +16,15 @@
           "x": 594.2737042157031,
           "y": 36.86225236108718
         }
+      },
+      "sections": {
+        "inputs": {
+          "collapsed": {
+            "prompt": {
+              "[]": true
+            }
+          }
+        }
       }
     },
     "whisper_segments_to_srt#1": {
