@@ -42,7 +42,7 @@ nodes:
           - node_id: whisper_segments_to_srt#1
             output_handle: srt
       - handle: encoding
-        value: utf8
+        value: utf_8
     description: Encode SRT text to binary data
   - task: oomol-preview::markdown_text_preview
     title: "Markdown preview #1"

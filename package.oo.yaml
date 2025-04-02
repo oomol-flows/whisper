@@ -10,9 +10,9 @@ scripts:
     pip install -r requirements.txt
 icon: ./icon.png
 dependencies:
-  oomol-transform: 0.0.1
-  oomol-file: 0.0.7
-  oomol-preview: 0.0.2
+  oomol-transform: 0.0.3
+  oomol-file: 0.0.10
+  oomol-preview: 0.0.3
 name: whisper
 description: Use OpenAI Whisper to recognize human voices from audio files.
 displayName: Whisper
