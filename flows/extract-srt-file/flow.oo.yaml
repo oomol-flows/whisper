@@ -18,6 +18,9 @@ nodes:
       - handle: prompt
         value:
           []
+        schema_overrides:
+          - schema:
+              type: array
       - handle: model
         from_node:
           - node_id: whisper-model#7

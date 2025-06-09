@@ -1,20 +1,19 @@
-version: 0.0.6
+version: 0.0.7
 scripts:
   # Script executed when the container is first loaded
   # eg: bootstrap: pip install pandas
   bootstrap: |
     set -e
-    pip install --upgrade pip
-    pip install -r requirements.txt
+    poetry install --no-root
     wget https://github.com/oomol/sshexec/releases/download/v1.0.6/installer.sh --output-document /tmp/installer.sh
     bash +x /tmp/installer.sh
 icon: ./icon.png
 dependencies:
-  oomol-transform: 0.0.3
+  oomol-transform: 0.0.4
   oomol-file: 0.0.10
-  oomol-preview: 0.0.3
+  oomol-preview: 0.0.4
 name: whisper
 description: Use OpenAI Whisper to recognize human voices from audio files.
 displayName: Whisper
-releaseNotes: fix broken ffmpeg installation
+releaseNotes: migrate to poetry
 repository: https://github.com/oomol-flows/whisper
