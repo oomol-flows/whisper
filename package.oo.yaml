@@ -1,11 +1,11 @@
-version: 0.0.7
+version: 0.0.8
 scripts:
   # Script executed when the container is first loaded
   # eg: bootstrap: pip install pandas
   bootstrap: |
     set -e
     poetry install --no-root
-    wget https://static.oomol.com/sshexec/v1.0.9/installer.sh --output-document /tmp/installer.sh
+    wget https://static.oomol.com/sshexec/v1.0.10/installer.sh --output-document /tmp/installer.sh
     bash +x /tmp/installer.sh
 icon: ./icon.png
 dependencies:
