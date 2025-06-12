@@ -5,7 +5,7 @@ scripts:
   bootstrap: |
     set -e
     poetry install --no-root
-    wget https://github.com/oomol/sshexec/releases/download/v1.0.6/installer.sh --output-document /tmp/installer.sh
+    wget https://github.com/oomol/sshexec/releases/download/v1.0.8/installer.sh --output-document /tmp/installer.sh
     bash +x /tmp/installer.sh
 icon: ./icon.png
 dependencies:
