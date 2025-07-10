@@ -1,5 +1,6 @@
 inputs_def:
   - handle: audio_file
+    description: Input
     json_schema:
       type: string
       ui:widget: file
@@ -43,12 +44,11 @@ inputs_def:
             extensions:
               - aac
     nullable: false
-    description: Input
   - handle: word_timestamps
     json_schema:
       type: boolean
-    nullable: false
     value: false
+    nullable: false
   - handle: encoding
     json_schema:
       enum:
@@ -150,8 +150,8 @@ inputs_def:
         - utf_16_be
         - utf_16_le
         - utf_7
-    nullable: false
     value: utf_8
+    nullable: false
   - handle: prompt
     json_schema:
       anyOf:
@@ -160,13 +160,14 @@ inputs_def:
       ui:options:
         title: Prompt
       ui:widget: llm::messages
-    nullable: false
     value:
       []
+    nullable: false
     schema_overrides:
       - schema:
           type: array
   - handle: model
+    description: Input
     json_schema:
       enum:
         - tiny
@@ -181,9 +182,8 @@ inputs_def:
           - Small
           - Medium
           - Large
-    nullable: false
-    description: Input
     value: small
+    nullable: false
   - handle: device
     json_schema:
       enum:
@@ -193,15 +193,15 @@ inputs_def:
         labels:
           - CPU
           - CUDA
-    nullable: false
     value: cuda
+    nullable: false
   - handle: dir_path
     json_schema:
       type: string
       minLength: 1
       ui:widget: dir
-    nullable: true
     value:
+    nullable: true
 outputs_def:
   - handle: srt_file_path
     json_schema:
@@ -218,60 +218,6 @@ outputs_def:
     json_schema:
       type: string
     nullable: false
-  - handle: segments
-    json_schema:
-      type: array
-      items:
-        type: object
-        required:
-          - text
-          - avg_logprob
-          - compression_ratio
-          - id
-          - no_speech_prob
-          - seek
-          - start
-          - end
-          - temperature
-          - tokens
-        properties:
-          text:
-            type: string
-          avg_logprob:
-            type: number
-          compression_ratio:
-            type: number
-          id:
-            type: integer
-          no_speech_prob:
-            type: number
-          seek:
-            type: number
-          start:
-            type: number
-          end:
-            type: number
-          temperature:
-            type: number
-          tokens:
-            type: array
-            items:
-              type: number
-          words:
-            type: array
-            items:
-              type: object
-              properties:
-                start:
-                  type: number
-                end:
-                  type: number
-                word:
-                  type: string
-                probability:
-                  type: number
-    nullable: false
-    description: Output
 nodes:
   - node_id: whisper-model#1
     title: "Whisper model #1"
@@ -456,12 +402,20 @@ nodes:
         value:
       - handle: srt_text
         from_node:
-          - node_id: whisper#1
-            output_handle: text
+          - node_id: whisper_segments_to_srt#1
+            output_handle: srt
       - handle: encoding
         value: utf_8
         from_flow:
           - input_handle: encoding
+  - node_id: whisper_segments_to_srt#1
+    title: "Whisper segments to SRT #1"
+    inputs_from:
+      - handle: segments
+        from_node:
+          - node_id: whisper#1
+            output_handle: segments
+    task: self::whisper_segments_to_srt
 title: Whisper extract SRT file
 outputs_from:
   - handle: srt_file_path
@@ -472,7 +426,3 @@ outputs_from:
     from_node:
       - node_id: whisper#1
         output_handle: language
-  - handle: segments
-    from_node:
-      - node_id: whisper#1
-        output_handle: segments
