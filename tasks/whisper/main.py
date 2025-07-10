@@ -1,22 +1,25 @@
-from typing import cast, Any, Literal, TypedDict
+from typing import cast, Literal, TypedDict
 from whisper import Whisper
 from shared.model import load_whisper_model
 
 
-class LLMMessages(TypedDict):
-  role: Literal["system", "user", "assistant"]
-  content: str
-
-class Inputs(TypedDict):
+#region generated meta
+import typing
+from oocana import LLMMessage
+class Inputs(typing.TypedDict):
   audio_file: str
-  model: Any
+  model: typing.Any
   word_timestamps: bool
-  prompt: list[LLMMessages]
-
-class Outputs(TypedDict):
+  prompt: list[LLMMessage]
+class Outputs(typing.TypedDict):
   language: str
   text: str
   segments: list[dict]
+#endregion
+
+class LLMMessages(TypedDict):
+  role: Literal["system", "user", "assistant"]
+  content: str
 
 def main(params: Inputs) -> Outputs:
   model: Whisper | None = params["model"]
