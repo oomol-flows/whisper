@@ -1,0 +1,90 @@
+title: Playground
+nodes:
+  - node_id: whisper-srt-extractor#1
+    title: "Whisper extract SRT file #1"
+    inputs_from:
+      - handle: audio_file
+        from_node:
+          - node_id: +value#1
+            output_handle: audio_file
+      - handle: word_timestamps
+        value: false
+      - handle: encoding
+        value: utf_8
+      - handle: prompt
+        value:
+          []
+        schema_overrides:
+          - schema:
+              type: array
+      - handle: model
+        value: small
+      - handle: device
+        value: cuda
+      - handle: dir_path
+        value: null
+    subflow: self::whisper-srt-extractor
+  - node_id: +value#1
+    title: "Value #1"
+    values:
+      - handle: audio_file
+        json_schema:
+          type: string
+          ui:widget: file
+          ui:options:
+            excludeAll: false
+            filters:
+              - name: MP3
+                extensions:
+                  - mp3
+              - name: MP4
+                extensions:
+                  - m4a
+                  - mp4
+              - name: WAV
+                extensions:
+                  - wav
+                  - wave
+              - name: WebM
+                extensions:
+                  - weba
+                  - webm
+              - name: FLAC
+                extensions:
+                  - flac
+                  - fla
+              - name: Opus
+                extensions:
+                  - opus
+                  - oga
+                  - ogg
+              - name: PCM
+                extensions:
+                  - pcm
+                  - raw
+                  - snd
+              - name: Vorbis
+                extensions:
+                  - ogg
+                  - oga
+              - name: AAC
+                extensions:
+                  - aac
+        nullable: false
+        description: Input
+  - node_id: audio_preview#1
+    title: "Audio preview #1"
+    inputs_from:
+      - handle: audio_path
+        from_node:
+          - node_id: +value#1
+            output_handle: audio_file
+    task: oomol-preview::audio_preview
+  - node_id: markdown_file_preview#1
+    title: "Markdown file preview #1"
+    inputs_from:
+      - handle: file_path
+        from_node:
+          - node_id: whisper-srt-extractor#1
+            output_handle: srt_file_path
+    task: oomol-preview::markdown_file_preview
