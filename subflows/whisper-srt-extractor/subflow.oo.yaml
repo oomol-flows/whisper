@@ -44,11 +44,6 @@ inputs_def:
             extensions:
               - aac
     nullable: false
-  - handle: word_timestamps
-    json_schema:
-      type: boolean
-    value: false
-    nullable: false
   - handle: encoding
     json_schema:
       enum:
@@ -249,7 +244,7 @@ nodes:
       - handle: word_timestamps
         value: false
         from_flow:
-          - input_handle: word_timestamps
+          []
       - handle: prompt
         value:
           []

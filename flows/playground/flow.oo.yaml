@@ -7,8 +7,6 @@ nodes:
         from_node:
           - node_id: +value#1
             output_handle: audio_file
-      - handle: word_timestamps
-        value: false
       - handle: encoding
         value: utf_8
       - handle: prompt
@@ -22,7 +20,7 @@ nodes:
       - handle: device
         value: cuda
       - handle: dir_path
-        value: null
+        value:
     subflow: self::whisper-srt-extractor
   - node_id: +value#1
     title: "Value #1"
