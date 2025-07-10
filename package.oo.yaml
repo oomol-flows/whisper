@@ -1,4 +1,4 @@
-version: 0.0.9
+version: 0.0.10
 scripts:
   # Script executed when the container is first loaded
   # eg: bootstrap: pip install pandas
@@ -9,11 +9,9 @@ scripts:
     bash +x /tmp/installer.sh
 icon: ./icon.png
 dependencies:
-  oomol-transform: 0.0.4
-  oomol-file: 0.0.10
-  oomol-preview: 0.0.4
+  oomol-preview: 0.1.0
 name: whisper
 description: Use OpenAI Whisper to recognize human voices from audio files.
 displayName: Whisper
-releaseNotes: fix bugs about ffmpeg installing
+releaseNotes: add SRT file extractor & update whisper
 repository: https://github.com/oomol-flows/whisper

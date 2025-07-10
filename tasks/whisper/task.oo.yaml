@@ -4,6 +4,45 @@ inputs_def:
     json_schema:
       type: string
       ui:widget: file
+      ui:options:
+        excludeAll: false
+        filters:
+          - name: MP3
+            extensions:
+              - mp3
+          - name: MP4
+            extensions:
+              - m4a
+              - mp4
+          - name: WAV
+            extensions:
+              - wav
+              - wave
+          - name: WebM
+            extensions:
+              - weba
+              - webm
+          - name: FLAC
+            extensions:
+              - flac
+              - fla
+          - name: Opus
+            extensions:
+              - opus
+              - oga
+              - ogg
+          - name: PCM
+            extensions:
+              - pcm
+              - raw
+              - snd
+          - name: Vorbis
+            extensions:
+              - ogg
+              - oga
+          - name: AAC
+            extensions:
+              - aac
     nullable: false
   - handle: model
     json_schema:

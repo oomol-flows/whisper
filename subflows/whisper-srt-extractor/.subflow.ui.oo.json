@@ -1,0 +1,63 @@
+{
+  "nodes": {
+    "whisper-model#1": {
+      "contentWidth": 450,
+      "rfNode": {
+        "position": {
+          "x": 580.9265994244208,
+          "y": -23.729284128181423
+        }
+      }
+    },
+    "whisper#1": {
+      "contentWidth": 450,
+      "rfNode": {
+        "position": {
+          "x": 1189.942322665593,
+          "y": -291.4423346926211
+        }
+      }
+    },
+    "+python#1": {
+      "contentWidth": 530.9424424780774,
+      "rfNode": {
+        "position": {
+          "x": 2232.585689930826,
+          "y": -163.98580557384258
+        }
+      },
+      "sections": {
+        "scriptlet": {
+          "cardCollapsed": true
+        }
+      }
+    },
+    "whisper_segments_to_srt#1": {
+      "contentWidth": 450,
+      "rfNode": {
+        "position": {
+          "x": 1712.782671729348,
+          "y": -291.4423346926211
+        }
+      }
+    }
+  },
+  "pseudoNodes": {
+    "input": {
+      "rfNode": {
+        "position": {
+          "x": 0,
+          "y": -100
+        }
+      }
+    },
+    "output": {
+      "rfNode": {
+        "position": {
+          "x": 2885.397417713406,
+          "y": 84.46729128126293
+        }
+      }
+    }
+  }
+}
