@@ -16,11 +16,10 @@ def main(params: Inputs, context: Context) -> Outputs:
   encoding = params["encoding"]
   file_path = params["srt_file_path"]
   if file_path is None:
-    file_path = os.path.join(
-      context.session_dir,
-      "whisper",
-      f"{context.job_id}.srt",
-    )
+    dir_path = os.path.join(context.session_dir, "whisper")
+    os.makedirs(dir_path, exist_ok=True)
+    file_path = os.path.join(dir_path, f"{context.job_id}.srt")
+
   with open(file_path, "w", encoding=encoding) as file:
     file.write(text)
 
