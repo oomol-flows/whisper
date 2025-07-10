@@ -25,6 +25,9 @@ inputs_def:
       ui:widget: llm::messages
     value:
       []
+    schema_overrides:
+      - schema:
+          type: array
 outputs_def:
   - handle: language
     json_schema:
