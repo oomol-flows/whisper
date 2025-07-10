@@ -1,0 +1,54 @@
+{
+  "nodes": {
+    "whisper-model#1": {
+      "contentWidth": 450,
+      "rfNode": {
+        "position": {
+          "x": 580.9265994244208,
+          "y": -23.729284128181423
+        }
+      }
+    },
+    "whisper#1": {
+      "contentWidth": 450,
+      "rfNode": {
+        "position": {
+          "x": 1189.942322665593,
+          "y": -291.4423346926211
+        }
+      }
+    },
+    "+python#1": {
+      "contentWidth": 530.9424424780774,
+      "rfNode": {
+        "position": {
+          "x": 1732.8204298006067,
+          "y": -187
+        }
+      },
+      "sections": {
+        "scriptlet": {
+          "cardCollapsed": true
+        }
+      }
+    }
+  },
+  "pseudoNodes": {
+    "input": {
+      "rfNode": {
+        "position": {
+          "x": 0,
+          "y": -100
+        }
+      }
+    },
+    "output": {
+      "rfNode": {
+        "position": {
+          "x": 2380.917390978185,
+          "y": 81.36758067442614
+        }
+      }
+    }
+  }
+}

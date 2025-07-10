@@ -9,9 +9,9 @@ scripts:
     bash +x /tmp/installer.sh
 icon: ./icon.png
 dependencies:
-  oomol-transform: 0.0.4
-  oomol-file: 0.0.10
-  oomol-preview: 0.0.4
+  oomol-transform: 0.0.5
+  oomol-file: 0.0.14
+  oomol-preview: 0.1.0
 name: whisper
 description: Use OpenAI Whisper to recognize human voices from audio files.
 displayName: Whisper

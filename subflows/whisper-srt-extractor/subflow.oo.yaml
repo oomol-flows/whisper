@@ -1,0 +1,478 @@
+inputs_def:
+  - handle: audio_file
+    json_schema:
+      type: string
+      ui:widget: file
+      ui:options:
+        excludeAll: false
+        filters:
+          - name: MP3
+            extensions:
+              - mp3
+          - name: MP4
+            extensions:
+              - m4a
+              - mp4
+          - name: WAV
+            extensions:
+              - wav
+              - wave
+          - name: WebM
+            extensions:
+              - weba
+              - webm
+          - name: FLAC
+            extensions:
+              - flac
+              - fla
+          - name: Opus
+            extensions:
+              - opus
+              - oga
+              - ogg
+          - name: PCM
+            extensions:
+              - pcm
+              - raw
+              - snd
+          - name: Vorbis
+            extensions:
+              - ogg
+              - oga
+          - name: AAC
+            extensions:
+              - aac
+    nullable: false
+    description: Input
+  - handle: word_timestamps
+    json_schema:
+      type: boolean
+    nullable: false
+    value: false
+  - handle: encoding
+    json_schema:
+      enum:
+        - utf_8
+        - utf_8_sig
+        - ascii
+        - hex
+        - big5
+        - big5hkscs
+        - cp037
+        - cp273
+        - cp424
+        - cp437
+        - cp500
+        - cp720
+        - cp737
+        - cp775
+        - cp850
+        - cp852
+        - cp855
+        - cp856
+        - cp857
+        - cp858
+        - cp860
+        - cp861
+        - cp862
+        - cp863
+        - cp864
+        - cp865
+        - cp866
+        - cp869
+        - cp874
+        - cp875
+        - cp932
+        - cp949
+        - cp950
+        - cp1006
+        - cp1026
+        - cp1125
+        - cp1140
+        - cp1250
+        - cp1251
+        - cp1252
+        - cp1253
+        - cp1254
+        - cp1255
+        - cp1256
+        - cp1257
+        - cp1258
+        - euc_jp
+        - euc_jis_2004
+        - euc_jisx0213
+        - euc_kr
+        - gb2312
+        - gbk
+        - gb18030
+        - hz
+        - iso2022_jp
+        - iso2022_jp_1
+        - iso2022_jp_2
+        - iso2022_jp_2004
+        - iso2022_jp_3
+        - iso2022_jp_ext
+        - iso2022_kr
+        - latin_1
+        - iso8859_2
+        - iso8859_3
+        - iso8859_4
+        - iso8859_5
+        - iso8859_6
+        - iso8859_7
+        - iso8859_8
+        - iso8859_9
+        - iso8859_10
+        - iso8859_11
+        - iso8859_13
+        - iso8859_14
+        - iso8859_15
+        - iso8859_16
+        - johab
+        - koi8_r
+        - koi8_t
+        - koi8_u
+        - kz1048
+        - mac_cyrillic
+        - mac_greek
+        - mac_iceland
+        - mac_latin2
+        - mac_roman
+        - mac_turkish
+        - ptcp154
+        - shift_jis
+        - shift_jis_2004
+        - shift_jisx0213
+        - utf_32
+        - utf_32_be
+        - utf_32_le
+        - utf_16
+        - utf_16_be
+        - utf_16_le
+        - utf_7
+    nullable: false
+    value: utf_8
+  - handle: prompt
+    json_schema:
+      anyOf:
+        - type: string
+        - type: array
+      ui:options:
+        title: Prompt
+      ui:widget: llm::messages
+    nullable: false
+    value:
+      []
+    schema_overrides:
+      - schema:
+          type: array
+  - handle: model
+    json_schema:
+      enum:
+        - tiny
+        - base
+        - small
+        - medium
+        - large
+      ui:options:
+        labels:
+          - Tiny
+          - Base
+          - Small
+          - Medium
+          - Large
+    nullable: false
+    description: Input
+    value: small
+  - handle: device
+    json_schema:
+      enum:
+        - cpu
+        - cuda
+      ui:options:
+        labels:
+          - CPU
+          - CUDA
+    nullable: false
+    value: cuda
+  - handle: dir_path
+    json_schema:
+      type: string
+      minLength: 1
+      ui:widget: dir
+    nullable: true
+    value:
+outputs_def:
+  - handle: srt_file_path
+    json_schema:
+      type: string
+      ui:widget: save
+      ui:options:
+        filters:
+          - name: SRT
+            extensions:
+              - srt
+        excludeAll: true
+    nullable: false
+  - handle: language
+    json_schema:
+      type: string
+    nullable: false
+  - handle: segments
+    json_schema:
+      type: array
+      items:
+        type: object
+        required:
+          - text
+          - avg_logprob
+          - compression_ratio
+          - id
+          - no_speech_prob
+          - seek
+          - start
+          - end
+          - temperature
+          - tokens
+        properties:
+          text:
+            type: string
+          avg_logprob:
+            type: number
+          compression_ratio:
+            type: number
+          id:
+            type: integer
+          no_speech_prob:
+            type: number
+          seek:
+            type: number
+          start:
+            type: number
+          end:
+            type: number
+          temperature:
+            type: number
+          tokens:
+            type: array
+            items:
+              type: number
+          words:
+            type: array
+            items:
+              type: object
+              properties:
+                start:
+                  type: number
+                end:
+                  type: number
+                word:
+                  type: string
+                probability:
+                  type: number
+    nullable: false
+    description: Output
+nodes:
+  - node_id: whisper-model#1
+    title: "Whisper model #1"
+    inputs_from:
+      - handle: model
+        value: small
+        from_flow:
+          - input_handle: model
+      - handle: device
+        value: cuda
+        from_flow:
+          - input_handle: device
+      - handle: dir_path
+        value: null
+        from_flow:
+          - input_handle: dir_path
+    task: self::whisper-model
+  - node_id: whisper#1
+    title: "Whisper #1"
+    inputs_from:
+      - handle: audio_file
+        from_flow:
+          - input_handle: audio_file
+      - handle: model
+        value: null
+        from_node:
+          - node_id: whisper-model#1
+            output_handle: model
+      - handle: word_timestamps
+        value: false
+        from_flow:
+          - input_handle: word_timestamps
+      - handle: prompt
+        value:
+          []
+        schema_overrides:
+          - schema:
+              type: array
+        from_flow:
+          - input_handle: prompt
+    task: self::whisper
+  - node_id: +python#1
+    title: "Save SRT file"
+    icon: ":logos:python:"
+    task:
+      ui:
+        default_width: 450
+      inputs_def:
+        - handle: srt_text
+          json_schema:
+            type: string
+        - handle: srt_file_path
+          json_schema:
+            type: string
+            ui:widget: save
+            ui:options:
+              filters:
+                - name: SRT
+                  extensions:
+                    - srt
+              excludeAll: true
+          nullable: true
+        - handle: encoding
+          json_schema:
+            enum:
+              - utf_8
+              - utf_8_sig
+              - ascii
+              - hex
+              - big5
+              - big5hkscs
+              - cp037
+              - cp273
+              - cp424
+              - cp437
+              - cp500
+              - cp720
+              - cp737
+              - cp775
+              - cp850
+              - cp852
+              - cp855
+              - cp856
+              - cp857
+              - cp858
+              - cp860
+              - cp861
+              - cp862
+              - cp863
+              - cp864
+              - cp865
+              - cp866
+              - cp869
+              - cp874
+              - cp875
+              - cp932
+              - cp949
+              - cp950
+              - cp1006
+              - cp1026
+              - cp1125
+              - cp1140
+              - cp1250
+              - cp1251
+              - cp1252
+              - cp1253
+              - cp1254
+              - cp1255
+              - cp1256
+              - cp1257
+              - cp1258
+              - euc_jp
+              - euc_jis_2004
+              - euc_jisx0213
+              - euc_kr
+              - gb2312
+              - gbk
+              - gb18030
+              - hz
+              - iso2022_jp
+              - iso2022_jp_1
+              - iso2022_jp_2
+              - iso2022_jp_2004
+              - iso2022_jp_3
+              - iso2022_jp_ext
+              - iso2022_kr
+              - latin_1
+              - iso8859_2
+              - iso8859_3
+              - iso8859_4
+              - iso8859_5
+              - iso8859_6
+              - iso8859_7
+              - iso8859_8
+              - iso8859_9
+              - iso8859_10
+              - iso8859_11
+              - iso8859_13
+              - iso8859_14
+              - iso8859_15
+              - iso8859_16
+              - johab
+              - koi8_r
+              - koi8_t
+              - koi8_u
+              - kz1048
+              - mac_cyrillic
+              - mac_greek
+              - mac_iceland
+              - mac_latin2
+              - mac_roman
+              - mac_turkish
+              - ptcp154
+              - shift_jis
+              - shift_jis_2004
+              - shift_jisx0213
+              - utf_32
+              - utf_32_be
+              - utf_32_le
+              - utf_16
+              - utf_16_be
+              - utf_16_le
+              - utf_7
+          nullable: false
+      outputs_def:
+        - handle: srt_file_path
+          json_schema:
+            type: string
+            ui:widget: save
+            ui:options:
+              filters:
+                - name: SRT
+                  extensions:
+                    - srt
+              excludeAll: true
+      executor:
+        name: python
+        options:
+          entry: scriptlets/+scriptlet#1.py
+    inputs_from:
+      - handle: srt_file_path
+        value:
+      - handle: srt_text
+        from_node:
+          - node_id: whisper#1
+            output_handle: text
+      - handle: encoding
+        value: utf_8
+        from_flow:
+          - input_handle: encoding
+title: Whisper extract SRT file
+outputs_from:
+  - handle: srt_file_path
+    from_node:
+      - node_id: +python#1
+        output_handle: srt_file_path
+  - handle: language
+    from_node:
+      - node_id: whisper#1
+        output_handle: language
+  - handle: segments
+    from_node:
+      - node_id: whisper#1
+        output_handle: segments
