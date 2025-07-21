@@ -68,9 +68,6 @@ inputs_def:
       - schema:
           type: array
 outputs_def:
-  - handle: language
-    json_schema:
-      type: string
   - handle: text
     json_schema:
       type: string
@@ -127,6 +124,9 @@ outputs_def:
                   type: string
                 probability:
                   type: number
+  - handle: language
+    json_schema:
+      type: string
 ui:
   default_width: 450
 executor:

@@ -44,6 +44,20 @@ inputs_def:
             extensions:
               - aac
     nullable: false
+  - handle: srt_file_path
+    json_schema:
+      type: string
+      ui:widget: save
+      ui:options:
+        filters:
+          - name: SRT
+            extensions:
+              - srt
+        excludeAll: true
+    value:
+    nullable: true
+  - group: more
+    collapsed: true
   - handle: encoding
     json_schema:
       enum:
@@ -147,20 +161,6 @@ inputs_def:
         - utf_7
     value: utf_8
     nullable: false
-  - handle: prompt
-    json_schema:
-      anyOf:
-        - type: string
-        - type: array
-      ui:options:
-        title: Prompt
-      ui:widget: llm::messages
-    value:
-      []
-    nullable: false
-    schema_overrides:
-      - schema:
-          type: array
   - handle: model
     description: Input
     json_schema:
@@ -179,6 +179,20 @@ inputs_def:
           - Large
     value: small
     nullable: false
+  - handle: prompt
+    json_schema:
+      anyOf:
+        - type: string
+        - type: array
+      ui:options:
+        title: Prompt
+      ui:widget: llm::messages
+    value:
+      []
+    nullable: false
+    schema_overrides:
+      - schema:
+          type: array
   - handle: device
     json_schema:
       enum:
@@ -189,6 +203,11 @@ inputs_def:
           - CPU
           - CUDA
     value: cuda
+    nullable: false
+  - handle: word_timestamps
+    json_schema:
+      type: boolean
+    value: false
     nullable: false
 outputs_def:
   - handle: srt_file_path
@@ -223,6 +242,7 @@ nodes:
         from_flow:
           - input_handle: dir_path
     task: self::whisper-model
+    progressWeight: 10
   - node_id: whisper#1
     title: "Whisper #1"
     inputs_from:
@@ -237,7 +257,7 @@ nodes:
       - handle: word_timestamps
         value: false
         from_flow:
-          []
+          - input_handle: word_timestamps
       - handle: prompt
         value:
           []
@@ -247,6 +267,7 @@ nodes:
         from_flow:
           - input_handle: prompt
     task: self::whisper
+    progressWeight: 88
   - node_id: +python#1
     title: "Save SRT file"
     icon: ":logos:python:"
@@ -388,6 +409,8 @@ nodes:
     inputs_from:
       - handle: srt_file_path
         value:
+        from_flow:
+          - input_handle: srt_file_path
       - handle: srt_text
         from_node:
           - node_id: whisper_segments_to_srt#1
@@ -396,6 +419,7 @@ nodes:
         value: utf_8
         from_flow:
           - input_handle: encoding
+    progressWeight: 1
   - node_id: whisper_segments_to_srt#1
     title: "Whisper segments to SRT #1"
     inputs_from:
@@ -404,6 +428,7 @@ nodes:
           - node_id: whisper#1
             output_handle: segments
     task: self::whisper_segments_to_srt
+    progressWeight: 1
 title: Whisper extract SRT file
 outputs_from:
   - handle: srt_file_path

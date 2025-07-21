@@ -6,6 +6,13 @@
           "x": 509.895903087816,
           "y": -76.81517601509927
         }
+      },
+      "sections": {
+        "inputs": {
+          "groupCollapsed": {
+            "more": true
+          }
+        }
       }
     },
     "+value#1": {
