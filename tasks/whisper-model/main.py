@@ -5,7 +5,7 @@ from shared.model import load_whisper_model, ModelKind
 #region generated meta
 import typing
 class Inputs(typing.TypedDict):
-  model: typing.Literal["tiny", "base", "small", "medium", "large"]
+  model: typing.Literal["tiny.en", "tiny", "base.en", "base", "small.en", "small", "medium.en", "medium", "large-v1", "large-v2", "large-v3", "large", "large-v3-turbo", "turbo"]
   device: typing.Literal["cpu", "cuda"]
 class Outputs(typing.TypedDict):
   model: typing.Any

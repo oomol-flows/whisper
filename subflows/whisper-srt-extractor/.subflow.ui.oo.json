@@ -49,6 +49,13 @@
           "x": 0,
           "y": -100
         }
+      },
+      "sections": {
+        "subflowInput": {
+          "groupCollapsed": {
+            "more": true
+          }
+        }
       }
     },
     "output": {

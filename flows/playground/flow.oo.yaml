@@ -18,7 +18,7 @@ nodes:
           - schema:
               type: array
       - handle: model
-        value: small
+        value: base
       - handle: device
         value: cuda
       - handle: srt_file_path
