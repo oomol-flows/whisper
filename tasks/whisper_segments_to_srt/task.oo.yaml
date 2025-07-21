@@ -1,6 +1,7 @@
 inputs_def:
   - handle: segments
-    description: Input
+    description: Whisper extracts spoken snippets from audio, including more
+      information than just text. It can be generated using the Whisper block.
     json_schema:
       type: array
       items:
@@ -57,6 +58,7 @@ outputs_def:
     description: Output
     json_schema:
       type: string
+    kind: SRT file contents
 ui:
   default_width: 450
 executor:
@@ -65,3 +67,4 @@ executor:
     spawn: false
     entry: main.py
 title: Whisper segments to SRT
+description: Convert Whisper segments to SRT file text
