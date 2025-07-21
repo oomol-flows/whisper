@@ -19,13 +19,12 @@ nodes:
         value: small
       - handle: device
         value: cuda
-      - handle: dir_path
-        value:
     subflow: self::whisper-srt-extractor
   - node_id: +value#1
     title: "Value #1"
     values:
       - handle: audio_file
+        description: Input
         json_schema:
           type: string
           ui:widget: file
@@ -69,7 +68,6 @@ nodes:
                 extensions:
                   - aac
         nullable: false
-        description: Input
   - node_id: audio_preview#1
     title: "Audio preview #1"
     inputs_from:

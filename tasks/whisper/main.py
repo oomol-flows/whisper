@@ -1,5 +1,6 @@
 from typing import cast, Literal, TypedDict
 from whisper import Whisper
+from oocana import Context
 from shared.model import load_whisper_model
 
 
@@ -21,20 +22,24 @@ class LLMMessages(TypedDict):
   role: Literal["system", "user", "assistant"]
   content: str
 
-def main(params: Inputs) -> Outputs:
+def main(params: Inputs, context: Context) -> Outputs:
   model: Whisper | None = params["model"]
   audio_file = params["audio_file"]
   word_timestamps = params["word_timestamps"]
   prompts = params["prompt"]
-  prompt: str = ""
 
+  prompt: str = ""
   if len(prompts) > 0:
     prompt = prompts[0]["content"]
     if len(prompts) > 1:
       print("Warning: Only the first prompt is used.")
 
   if model is None:
-    model = load_whisper_model()
+    model = load_whisper_model(
+      model_kind="medium",
+      device="cuda",
+      model_dir_path=context.pkg_data_dir,
+    )
 
   result = model.transcribe(
     audio_file,
