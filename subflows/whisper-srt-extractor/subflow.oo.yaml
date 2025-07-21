@@ -45,6 +45,7 @@ inputs_def:
               - aac
     nullable: false
   - handle: srt_file_path
+    description: If filled in, the path of the stored SRT file will be specified.
     json_schema:
       type: string
       ui:widget: save
@@ -59,6 +60,7 @@ inputs_def:
   - group: more
     collapsed: true
   - handle: encoding
+    description: SRT file string encoding
     json_schema:
       enum:
         - utf_8
@@ -162,7 +164,7 @@ inputs_def:
     value: utf_8
     nullable: false
   - handle: model
-    description: Input
+    description: What Whisper model to use
     json_schema:
       enum:
         - tiny.en
@@ -212,6 +214,7 @@ inputs_def:
       - schema:
           type: array
   - handle: device
+    description: Use CUDA to enable hardware acceleration, otherwise use CPU
     json_schema:
       enum:
         - cpu
@@ -223,12 +226,14 @@ inputs_def:
     value: cuda
     nullable: false
   - handle: word_timestamps
+    description: Require Whisper's timestamps to be accurate to the word level
     json_schema:
       type: boolean
     value: false
     nullable: false
 outputs_def:
   - handle: srt_file_path
+    description: the path of the stored SRT file will be specified.
     json_schema:
       type: string
       ui:widget: save
@@ -457,3 +462,5 @@ outputs_from:
     from_node:
       - node_id: whisper#1
         output_handle: language
+description: Use Whisper, OpenAI's open source AST system, to identify what
+  people are saying from audio files and store it in SRT files.

@@ -35,6 +35,7 @@ inputs_def:
           - Turbo
     value: medium
   - handle: device
+    description: Use CUDA to enable hardware acceleration, otherwise use CPU
     json_schema:
       enum:
         - cpu
@@ -58,3 +59,4 @@ executor:
     spawn: false
     entry: main.py
 title: Whisper model
+description: Loading the Whisper model
