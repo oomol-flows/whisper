@@ -9,6 +9,8 @@ nodes:
             output_handle: audio_file
       - handle: encoding
         value: utf_8
+        from_node:
+          []
       - handle: prompt
         value:
           []
@@ -16,16 +18,19 @@ nodes:
           - schema:
               type: array
       - handle: model
-        value: small
+        value: base
       - handle: device
         value: cuda
-      - handle: dir_path
+      - handle: srt_file_path
         value:
+      - handle: word_timestamps
+        value: false
     subflow: self::whisper-srt-extractor
   - node_id: +value#1
     title: "Value #1"
     values:
       - handle: audio_file
+        description: Input
         json_schema:
           type: string
           ui:widget: file
@@ -69,7 +74,6 @@ nodes:
                 extensions:
                   - aac
         nullable: false
-        description: Input
   - node_id: audio_preview#1
     title: "Audio preview #1"
     inputs_from:

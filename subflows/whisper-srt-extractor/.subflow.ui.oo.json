@@ -4,8 +4,8 @@
       "contentWidth": 450,
       "rfNode": {
         "position": {
-          "x": 580.9265994244208,
-          "y": -23.729284128181423
+          "x": 596.1049138676084,
+          "y": -67.0958968230033
         }
       }
     },
@@ -48,6 +48,13 @@
         "position": {
           "x": 0,
           "y": -100
+        }
+      },
+      "sections": {
+        "subflowInput": {
+          "groupCollapsed": {
+            "more": true
+          }
         }
       }
     },
