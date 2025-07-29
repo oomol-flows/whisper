@@ -265,7 +265,7 @@ nodes:
         from_flow:
           - input_handle: dir_path
     task: self::whisper-model
-    progressWeight: 10
+    progress_weight: 10
   - node_id: whisper#1
     title: "Whisper #1"
     inputs_from:
@@ -290,7 +290,7 @@ nodes:
         from_flow:
           - input_handle: prompt
     task: self::whisper
-    progressWeight: 88
+    progress_weight: 88
   - node_id: +python#1
     title: "Save SRT file"
     icon: ":logos:python:"
@@ -442,7 +442,7 @@ nodes:
         value: utf_8
         from_flow:
           - input_handle: encoding
-    progressWeight: 1
+    progress_weight: 1
   - node_id: whisper_segments_to_srt#1
     title: "Whisper segments to SRT #1"
     inputs_from:
@@ -451,7 +451,7 @@ nodes:
           - node_id: whisper#1
             output_handle: segments
     task: self::whisper_segments_to_srt
-    progressWeight: 1
+    progress_weight: 1
 title: Whisper extract SRT file
 outputs_from:
   - handle: srt_file_path
