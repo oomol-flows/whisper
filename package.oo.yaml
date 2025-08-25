@@ -1,4 +1,4 @@
-version: 0.0.11
+version: 0.0.12
 scripts:
   # Script executed when the container is first loaded
   # eg: bootstrap: pip install pandas
@@ -13,5 +13,5 @@ dependencies:
 name: whisper
 description: Use OpenAI Whisper to recognize human voices from audio files.
 displayName: Whisper
-releaseNotes: add groups & description.
+releaseNotes: add speech to text
 repository: https://github.com/oomol-flows/whisper

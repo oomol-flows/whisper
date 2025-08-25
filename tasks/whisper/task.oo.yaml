@@ -139,3 +139,4 @@ executor:
 title: Whisper
 description: Use Whisper, an open-source ASR system from OpenAI, to extract the
   spoken content from the audio file in the form of a file.
+private: true

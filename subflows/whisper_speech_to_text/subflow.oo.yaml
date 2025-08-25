@@ -1,0 +1,144 @@
+nodes:
+  - node_id: whisper#1
+    title: "Whisper #1"
+    inputs_from:
+      - handle: audio_file
+        value: /oomol-driver/oomol-storage/uuuu/uuuu.mp3
+        from_flow:
+          - input_handle: audio_file
+      - handle: model
+        value: null
+        from_node:
+          - node_id: whisper-model#1
+            output_handle: model
+      - handle: word_timestamps
+        value: false
+      - handle: prompt
+        value:
+          []
+        schema_overrides:
+          - schema:
+              type: array
+    task: self::whisper
+  - node_id: whisper-model#1
+    title: "Whisper model #1"
+    inputs_from:
+      - handle: model
+        value: medium
+        from_flow:
+          - input_handle: model
+      - handle: device
+        value: cuda
+        from_flow:
+          - input_handle: device
+    task: self::whisper-model
+inputs_def:
+  - handle: audio_file
+    json_schema:
+      type: string
+      ui:widget: file
+      ui:options:
+        excludeAll: false
+        filters:
+          - name: MP3
+            extensions:
+              - mp3
+          - name: MP4
+            extensions:
+              - m4a
+              - mp4
+          - name: WAV
+            extensions:
+              - wav
+              - wave
+          - name: WebM
+            extensions:
+              - weba
+              - webm
+          - name: FLAC
+            extensions:
+              - flac
+              - fla
+          - name: Opus
+            extensions:
+              - opus
+              - oga
+              - ogg
+          - name: PCM
+            extensions:
+              - pcm
+              - raw
+              - snd
+          - name: Vorbis
+            extensions:
+              - ogg
+              - oga
+          - name: AAC
+            extensions:
+              - aac
+    nullable: false
+    description: ""
+    executor_name: python
+  - handle: model
+    json_schema:
+      enum:
+        - tiny.en
+        - tiny
+        - base.en
+        - base
+        - small.en
+        - small
+        - medium.en
+        - medium
+        - large-v1
+        - large-v2
+        - large-v3
+        - large
+        - large-v3-turbo
+        - turbo
+      ui:options:
+        labels:
+          - Tiny (English)
+          - Tiny
+          - Base (English)
+          - Base
+          - Small (English)
+          - Small
+          - Medium (English)
+          - Medium
+          - Large V1
+          - Large V2
+          - Large V3
+          - Large
+          - Large V3 Turbo
+          - Turbo
+    nullable: false
+    description: Input
+    value: tiny
+    executor_name: python
+  - handle: device
+    json_schema:
+      enum:
+        - cpu
+        - cuda
+      ui:options:
+        labels:
+          - CPU
+          - CUDA
+    nullable: false
+    description: Use CUDA to enable hardware acceleration, otherwise use CPU
+    value: cpu
+    executor_name: python
+outputs_def:
+  - handle: text
+    json_schema:
+      type: string
+    nullable: false
+    executor_name: python
+outputs_from:
+  - handle: text
+    from_node:
+      - node_id: whisper#1
+        output_handle: text
+title: Whisper speech to text
+description: Enter a voice, and then output a text after the voice is recognized.
