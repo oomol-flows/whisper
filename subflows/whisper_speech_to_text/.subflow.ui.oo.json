@@ -1,0 +1,39 @@
+{
+  "nodes": {
+    "whisper#1": {
+      "contentWidth": 581.2398119265509,
+      "rfNode": {
+        "position": {
+          "x": 486,
+          "y": 157
+        }
+      }
+    },
+    "whisper-model#1": {
+      "rfNode": {
+        "position": {
+          "x": 0,
+          "y": 234.5
+        }
+      }
+    }
+  },
+  "pseudoNodes": {
+    "input": {
+      "rfNode": {
+        "position": {
+          "x": -448,
+          "y": 12
+        }
+      }
+    },
+    "output": {
+      "rfNode": {
+        "position": {
+          "x": 1127.5,
+          "y": -32
+        }
+      }
+    }
+  }
+}

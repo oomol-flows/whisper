@@ -3,8 +3,8 @@
     "whisper-srt-extractor#1": {
       "rfNode": {
         "position": {
-          "x": 509.895903087816,
-          "y": -76.81517601509927
+          "x": 574.3282581312967,
+          "y": -69.65602545471253
         }
       },
       "sections": {
@@ -25,16 +25,15 @@
       }
     },
     "audio_preview#1": {
-      "contentWidth": 450,
       "rfNode": {
         "position": {
-          "x": 1107.0951950800445,
-          "y": -179.0671701089251
+          "x": 1891.0951950800445,
+          "y": -69.65602545471253
         }
       }
     },
     "markdown_file_preview#1": {
-      "contentWidth": 450,
+      "contentWidth": 618.1522175541509,
       "rfNode": {
         "position": {
           "x": 1107.0951950800445,
