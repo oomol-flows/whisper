@@ -13,9 +13,9 @@ class Inputs(typing.TypedDict):
   word_timestamps: bool
   prompt: list[LLMMessage]
 class Outputs(typing.TypedDict):
-  text: str
-  segments: list[dict]
-  language: str
+  text: typing.NotRequired[str]
+  segments: typing.NotRequired[list[dict]]
+  language: typing.NotRequired[str]
 #endregion
 
 class LLMMessages(TypedDict):

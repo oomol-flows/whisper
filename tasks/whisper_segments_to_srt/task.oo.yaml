@@ -59,6 +59,10 @@ outputs_def:
     json_schema:
       type: string
     kind: SRT file contents
+  - handle: srt_file
+    json_schema:
+      type: string
+      ui:widget: file
 ui:
   default_width: 450
 executor:
@@ -68,4 +72,4 @@ executor:
     entry: main.py
 title: Whisper segments to SRT
 description: Convert Whisper segments to SRT file text
-private: true
+private: false

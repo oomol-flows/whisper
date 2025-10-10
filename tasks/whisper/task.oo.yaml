@@ -1,6 +1,7 @@
 inputs_def:
   - handle: audio_file
-    description: ""
+    description: The audio file to transcribe. Supports multiple formats including
+      MP3, MP4, WAV, WebM, FLAC, Opus, PCM, Vorbis, and AAC.
     json_schema:
       type: string
       ui:widget: file
@@ -45,7 +46,8 @@ inputs_def:
               - aac
     nullable: false
   - handle: model
-    description: This field is constructed using the whisper model
+    description: Pre-loaded Whisper model instance from the Whisper Model block. If
+      not provided, a default model will be loaded automatically.
     json_schema:
       contentMediaType: oomol/var
     kind: model
@@ -57,6 +59,9 @@ inputs_def:
       type: boolean
     value: false
   - handle: prompt
+    description: Optional text to provide context for the transcription. Helps
+      improve accuracy by giving Whisper hints about content, terminology, or
+      speaking style.
     json_schema:
       anyOf:
         - type: string
@@ -71,10 +76,12 @@ inputs_def:
           type: array
 outputs_def:
   - handle: text
+    description: The complete transcribed text from the audio file as a single string
     json_schema:
       type: string
   - handle: segments
-    description: Output
+    description: Detailed transcription segments with timestamps, probabilities, and
+      word-level information for each portion of the audio
     json_schema:
       type: array
       items:
@@ -127,6 +134,8 @@ outputs_def:
                 probability:
                   type: number
   - handle: language
+    description: The detected or specified language of the audio content (e.g.,
+      'en', 'es', 'fr')
     json_schema:
       type: string
 ui:
@@ -137,6 +146,7 @@ executor:
     spawn: false
     entry: main.py
 title: Whisper
-description: Use Whisper, an open-source ASR system from OpenAI, to extract the
-  spoken content from the audio file in the form of a file.
-private: true
+description: Use Whisper, OpenAI's open-source automatic speech recognition
+  (ASR) system, to transcribe audio files into text with detailed segments and
+  timestamps.
+private: false

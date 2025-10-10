@@ -34,6 +34,8 @@ nodes:
     task: self::whisper-model
 inputs_def:
   - handle: audio_file
+    description: The audio file to transcribe. Supports multiple formats including
+      MP3, MP4, WAV, WebM, FLAC, Opus, PCM, Vorbis, and AAC.
     json_schema:
       type: string
       ui:widget: file
@@ -77,9 +79,10 @@ inputs_def:
             extensions:
               - aac
     nullable: false
-    description: ""
     executor_name: python
   - handle: model
+    description: Select the Whisper model size. Larger models provide better
+      accuracy but require more memory and processing time.
     json_schema:
       enum:
         - tiny.en
@@ -113,7 +116,6 @@ inputs_def:
           - Large V3 Turbo
           - Turbo
     nullable: false
-    description: Input
     value: tiny
     executor_name: python
   - handle: device
@@ -131,6 +133,7 @@ inputs_def:
     executor_name: python
 outputs_def:
   - handle: text
+    description: The complete transcribed text from the audio file as a single string
     json_schema:
       type: string
     nullable: false
@@ -141,4 +144,5 @@ outputs_from:
       - node_id: whisper#1
         output_handle: text
 title: Whisper speech to text
-description: Enter a voice, and then output a text after the voice is recognized.
+description: Transcribe audio files to text using OpenAI's Whisper ASR system.
+  This subflow handles the complete speech-to-text conversion pipeline.

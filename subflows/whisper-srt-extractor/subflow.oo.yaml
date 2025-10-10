@@ -1,6 +1,7 @@
 inputs_def:
   - handle: audio_file
-    description: Input
+    description: The audio file to extract subtitles from. Supports multiple formats
+      including MP3, MP4, WAV, WebM, FLAC, Opus, PCM, Vorbis, and AAC.
     json_schema:
       type: string
       ui:widget: file
@@ -45,7 +46,8 @@ inputs_def:
               - aac
     nullable: false
   - handle: srt_file_path
-    description: If filled in, the path of the stored SRT file will be specified.
+    description: Optional output path for the SRT file. If not specified, a default
+      location will be used.
     json_schema:
       type: string
       ui:widget: save
@@ -164,7 +166,8 @@ inputs_def:
     value: utf_8
     nullable: false
   - handle: model
-    description: What Whisper model to use
+    description: Select the Whisper model size. Larger models provide better
+      accuracy but require more memory and processing time.
     json_schema:
       enum:
         - tiny.en
@@ -200,6 +203,9 @@ inputs_def:
     value: base
     nullable: false
   - handle: prompt
+    description: Optional text to provide context for the transcription. Helps
+      improve accuracy by giving Whisper hints about content, terminology, or
+      speaking style.
     json_schema:
       anyOf:
         - type: string
@@ -233,7 +239,7 @@ inputs_def:
     nullable: false
 outputs_def:
   - handle: srt_file_path
-    description: the path of the stored SRT file will be specified.
+    description: The file path where the generated SRT subtitle file has been saved
     json_schema:
       type: string
       ui:widget: save
@@ -245,6 +251,8 @@ outputs_def:
         excludeAll: true
     nullable: false
   - handle: language
+    description: The detected or specified language of the audio content (e.g.,
+      'en', 'es', 'fr')
     json_schema:
       type: string
     nullable: false
@@ -462,5 +470,6 @@ outputs_from:
     from_node:
       - node_id: whisper#1
         output_handle: language
-description: Use Whisper, OpenAI's open source AST system, to identify what
-  people are saying from audio files and store it in SRT files.
+description: Extract speech from audio files and generate SRT subtitle files
+  using OpenAI's Whisper ASR system. This subflow handles the complete pipeline
+  from audio input to saved SRT file.
