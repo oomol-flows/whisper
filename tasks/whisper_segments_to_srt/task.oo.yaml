@@ -68,4 +68,4 @@ executor:
     entry: main.py
 title: Whisper segments to SRT
 description: Convert Whisper segments to SRT file text
-private: true
+private: false

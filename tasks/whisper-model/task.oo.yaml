@@ -60,4 +60,4 @@ executor:
     entry: main.py
 title: Whisper model
 description: Loading the Whisper model
-private: true
+private: false

@@ -6,7 +6,7 @@ import typing
 class Inputs(typing.TypedDict):
   segments: list[dict]
 class Outputs(typing.TypedDict):
-  srt: str
+  srt: typing.NotRequired[str]
 #endregion
 
 def main(params: Inputs) -> Outputs:
