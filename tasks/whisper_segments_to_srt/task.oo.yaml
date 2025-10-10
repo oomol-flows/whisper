@@ -59,6 +59,10 @@ outputs_def:
     json_schema:
       type: string
     kind: SRT file contents
+  - handle: srt_file
+    json_schema:
+      type: string
+      ui:widget: file
 ui:
   default_width: 450
 executor:
